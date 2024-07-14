@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './ActivityForm.css';
-const userId = '1234'; // Ensure this matches your backend requirements
+const userId = '1234';
 
-const ActivityForm = ({ onAddActivity }) => {
+const ActivityForm = () => {
     const [activity, setActivity] = useState('');
     const [duration, setDuration] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5001/activities', { activity, duration, userId });
+            await axios.post('http://localhost:5001/activities', { activity, duration, userId });
             alert('Activity logged successfully');
             setActivity('');
             setDuration('');
-            onAddActivity(response.data); // Update the list of activities
         } catch (error) {
             console.error('Error logging activity:', error);
         }
@@ -39,7 +38,7 @@ const ActivityForm = ({ onAddActivity }) => {
                         placeholder="Duration (minutes)"
                         required
                     />
-                    <button type="submit">Add Activity</button>
+                    <button type="submit" className="action-button">Add Activity</button>
                 </form>
             </div>
         </div>

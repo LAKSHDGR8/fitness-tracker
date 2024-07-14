@@ -1,18 +1,18 @@
 .navbar {
     display: flex;
     justify-content: center;
-    align-items: center;
-    background-color: #343a40;
-    padding: 10px;
-}
-
-.navbar a {
-    color: #fff;
-    padding: 14px 20px;
+    background-color: #f1f1f1;
+    padding: 10px 0;
+  }
+  
+  .navbar a {
+    margin: 0 15px;
     text-decoration: none;
-    text-align: center;
-}
-
-.navbar a:hover {
-    background-color: #495057;
-}
+    color: #333;
+    font-size: 18px;
+  }
+  
+  .navbar a:hover {
+    color: #007bff;
+  }
+  

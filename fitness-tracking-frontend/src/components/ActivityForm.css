@@ -3,39 +3,42 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
-
-.form-box {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    max-width: 100%;
-}
-
-.form-box h2 {
+  }
+  
+  .form-box {
+    background: #f9f9f9;
+    padding: 40px; /* Increased padding for a bigger box */
+    border-radius: 10px; /* Increased border radius for a more rounded look */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Increased box shadow for better visibility */
     text-align: center;
-}
-
-.form-box input {
-    width: 100%;
-    padding: 10px;
+    width: 400px; /* Increased width for a bigger box */
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input {
     margin: 10px 0;
-    border: 1px solid #ccc;
+    padding: 15px; /* Increased padding for input fields */
+    border: 1px solid #ddd;
     border-radius: 5px;
-}
-
-.form-box button {
-    width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    color: #fff;
+    font-size: 16px; /* Increased font size for input fields */
+  }
+  
+  .action-button {
+    background-color: #ff4c4c;
+    color: white;
     border: none;
-    border-radius: 5px;
+    padding: 15px 20px; /* Increased padding for the button */
+    margin-top: 20px;
     cursor: pointer;
-}
-
-.form-box button:hover {
-    background-color: #218838;
-}
+    border-radius: 5px;
+    font-size: 18px; /* Increased font size for the button */
+  }
+  
+  .action-button:hover {
+    background-color: #ff1c1c;
+  }
+  

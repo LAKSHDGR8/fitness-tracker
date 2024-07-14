@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './LoggedInActivities.css';
 
 function LoggedInActivities() {
   const [activities, setActivities] = useState([]);
@@ -15,14 +16,14 @@ function LoggedInActivities() {
   const handleClear = async () => {
     try {
       await axios.delete('http://localhost:5001/activities');
-      setActivities([]); // Clear activities from state
+      setActivities([]);
     } catch (error) {
       console.error('Error clearing activities:', error);
     }
   };
 
   return (
-    <div>
+    <div className="activities-container">
       <h2>Logged In Activities</h2>
       <ul className="activities">
         {activities.map((activity) => (
@@ -31,7 +32,7 @@ function LoggedInActivities() {
           </li>
         ))}
       </ul>
-      <button onClick={handleClear}>Clear Activities</button>
+      <button className="action-button" onClick={handleClear}>Clear Activities</button>
     </div>
   );
 }
