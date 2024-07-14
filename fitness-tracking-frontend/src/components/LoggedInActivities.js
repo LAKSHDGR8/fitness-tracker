@@ -6,23 +6,20 @@ function LoggedInActivities() {
 
   useEffect(() => {
     const fetchActivities = async () => {
-      try {
-        const response = await axios.get('http://localhost:5001/activities');
-        setActivities(response.data);
-      } catch (error) {
-        console.error('Error fetching activities', error);
-      }
+      const response = await axios.get('http://localhost:5001/activities');
+      setActivities(response.data);
     };
-
     fetchActivities();
   }, []);
 
   return (
     <div>
-      <h2>Logged-in Activities</h2>
-      <ul>
+      <h2>Logged In Activities</h2>
+      <ul className="activities">
         {activities.map((activity) => (
-          <li key={activity._id}>{activity.activity} - {activity.duration} minutes</li>
+          <li key={activity._id}>
+            <strong>{activity.activity}</strong>: {activity.duration} minutes
+          </li>
         ))}
       </ul>
     </div>

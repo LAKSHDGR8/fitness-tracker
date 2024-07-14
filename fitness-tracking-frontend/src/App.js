@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import ActivityForm from './components/ActivityForm';
 import ActivityList from './components/ActivityList';
 import LoggedInActivities from './components/LoggedInActivities';
+import './App.css';
 
 function App() {
   return (
