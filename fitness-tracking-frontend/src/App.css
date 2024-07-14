@@ -13,7 +13,7 @@ header {
   font-size: 24px;
 }
 
-nav {
+/* nav {
   display: flex;
   justify-content: center;
   margin: 20px 0;
@@ -24,7 +24,7 @@ nav a {
   text-decoration: none;
   color: #4CAF50;
   font-size: 18px;
-}
+} */
 
 nav a:hover {
   text-decoration: underline;
@@ -56,14 +56,14 @@ form input, form button {
 }
 
 form button {
-  background-color: #4CAF50;
+  background-color: #ff4c4c;
   color: white;
   border: none;
   cursor: pointer;
 }
 
 form button:hover {
-  background-color: #45a049;
+  background-color: #ff1c1c; 
 }
 
 .activities {
