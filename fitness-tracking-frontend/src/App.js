@@ -5,7 +5,7 @@ import LoggedInActivities from './components/LoggedInActivities';
 import './NavBar.css';
 import './App.css';
 
-const App = () => {
+function App() {
     return (
         <Router>
             <div>
@@ -22,6 +22,6 @@ const App = () => {
             </div>
         </Router>
     );
-};
+}
 
 export default App;

@@ -12,6 +12,15 @@ function LoggedInActivities() {
     fetchActivities();
   }, []);
 
+  const handleClear = async () => {
+    try {
+      await axios.delete('http://localhost:5001/activities');
+      setActivities([]); // Clear activities from state
+    } catch (error) {
+      console.error('Error clearing activities:', error);
+    }
+  };
+
   return (
     <div>
       <h2>Logged In Activities</h2>
@@ -22,6 +31,7 @@ function LoggedInActivities() {
           </li>
         ))}
       </ul>
+      <button onClick={handleClear}>Clear Activities</button>
     </div>
   );
 }

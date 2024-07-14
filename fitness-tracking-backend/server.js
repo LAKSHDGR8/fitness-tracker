@@ -4,50 +4,59 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = 5001;
+const PORT = process.env.PORT || 5001;
 
 app.use(cors());
 app.use(bodyParser.json());
 
+mongoose.connect('mongodb://localhost:27017/fitness-tracker', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => {
+  console.log('Connected to MongoDB');
+}).catch((err) => {
+  console.error('Failed to connect to MongoDB', err);
+});
+
 const activitySchema = new mongoose.Schema({
   activity: String,
   duration: Number,
-  userId: { type: String, required: true }
+  userId: {
+    type: String,
+    required: true
+  }
 });
 
 const Activity = mongoose.model('Activity', activitySchema);
 
-app.post('/activities', async (req, res) => {
-  console.log('Incoming request:', req.body);
-
-  const { activity, duration, userId } = req.body;
-
-  if (!activity || !duration || !userId) {
-    console.log('Validation error:', { activity, duration, userId });
-    return res.status(400).json({ error: 'Activity, duration, and userId are required' });
-  }
-
-  try {
-    const newActivity = new Activity({ activity, duration, userId });
-    await newActivity.save();
-    res.status(201).json(newActivity);
-  } catch (error) {
-    console.error('Database error:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
-
 app.get('/activities', async (req, res) => {
-  const activities = await Activity.find();
-  res.json(activities);
+  try {
+    const activities = await Activity.find();
+    res.json(activities);
+  } catch (err) {
+    res.status(500).send({ message: 'Error fetching activities', error: err });
+  }
 });
 
-mongoose.connect('mongodb://localhost:27017/fitness', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    app.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
-    });
-  })
-  .catch(error => {
-    console.error('Connection error:', error);
-  });
+app.post('/activities', async (req, res) => {
+  try {
+    const newActivity = new Activity(req.body);
+    await newActivity.save();
+    res.status(201).send(newActivity);
+  } catch (err) {
+    res.status(400).send({ message: 'Error logging activity', error: err });
+  }
+});
+
+app.delete('/activities', async (req, res) => {
+  try {
+    await Activity.deleteMany({});
+    res.status(200).send({ message: 'All activities cleared' });
+  } catch (err) {
+    res.status(500).send({ message: 'Error clearing activities', error: err });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
