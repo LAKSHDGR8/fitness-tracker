@@ -28,7 +28,7 @@ function LoggedInActivities() {
       <ul className="activities">
         {activities.map((activity) => (
           <li key={activity._id}>
-            <strong>{activity.activity}</strong>: {activity.duration} minutes
+            <span><strong>{activity.activity}</strong>: {activity.duration} minutes</span>
           </li>
         ))}
       </ul>
