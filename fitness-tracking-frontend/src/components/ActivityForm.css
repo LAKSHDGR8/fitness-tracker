@@ -2,16 +2,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: calc(100vh - 60px); /* Adjust for the navbar height */
   }
   
   .form-box {
     background: #f9f9f9;
-    padding: 40px; /* Increased padding for a bigger box */
-    border-radius: 10px; /* Increased border radius for a more rounded look */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Increased box shadow for better visibility */
-    text-align: center;
-    width: 400px; /* Increased width for a bigger box */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
   }
   
   form {
@@ -20,25 +20,24 @@
   }
   
   input {
-    margin: 10px 0;
-    padding: 15px; /* Increased padding for input fields */
-    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px; /* Increased font size for input fields */
   }
   
-  .action-button {
+  button {
     background-color: #ff4c4c;
     color: white;
     border: none;
-    padding: 15px 20px; /* Increased padding for the button */
-    margin-top: 20px;
+    padding: 15px 20px;
     cursor: pointer;
     border-radius: 5px;
-    font-size: 18px; /* Increased font size for the button */
+    font-size: 18px;
   }
   
-  .action-button:hover {
+  button:hover {
     background-color: #ff1c1c;
   }
   

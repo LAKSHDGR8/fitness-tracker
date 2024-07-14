@@ -10,8 +10,25 @@ const ActivityForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5001/activities', { activity, duration, userId });
-            alert('Activity logged successfully');
+            // Log the activity
+            await axios.post('http://localhost:5001/activities', { activity, duration });
+
+            // Fetch the total duration
+            const response = await axios.get('http://localhost:5001/totalDuration');
+            const totalDuration = response.data.totalDuration;
+
+            // Determine the message to display
+            let message = 'Activity logged successfully. ';
+            if (totalDuration >= 90) {
+                message += 'Target met!';
+            } else {
+                const minutesLeft = 90 - totalDuration;
+                message += `${minutesLeft} minutes left to reach the target.`;
+            }
+
+            alert(message);
+
+            // Clear the form
             setActivity('');
             setDuration('');
         } catch (error) {
@@ -38,7 +55,7 @@ const ActivityForm = () => {
                         placeholder="Duration (minutes)"
                         required
                     />
-                    <button type="submit" className="action-button">Add Activity</button>
+                    <button type="submit">Add Activity</button>
                 </form>
             </div>
         </div>
