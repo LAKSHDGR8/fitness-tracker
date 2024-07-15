@@ -10,7 +10,7 @@ import './NavBar.css';
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const navigate = useNavigate();
+  
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -22,7 +22,7 @@ function App() {
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
-    // navigate('/');
+    
   };
 
   return (
