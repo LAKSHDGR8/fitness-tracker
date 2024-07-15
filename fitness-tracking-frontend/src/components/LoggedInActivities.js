@@ -7,15 +7,29 @@ function LoggedInActivities() {
 
   useEffect(() => {
     const fetchActivities = async () => {
-      const response = await axios.get('http://localhost:5001/activities');
-      setActivities(response.data);
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:5001/activities', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setActivities(response.data);
+      } catch (error) {
+        console.error('Error fetching activities:', error);
+      }
     };
     fetchActivities();
   }, []);
 
   const handleClear = async () => {
     try {
-      await axios.delete('http://localhost:5001/activities');
+      const token = localStorage.getItem('token');
+      await axios.delete('http://localhost:5001/activities', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setActivities([]);
     } catch (error) {
       console.error('Error clearing activities:', error);

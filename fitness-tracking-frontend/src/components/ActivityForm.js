@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './ActivityForm.css';
-const userId = '1234';
 
 const ActivityForm = () => {
     const [activity, setActivity] = useState('');
@@ -10,11 +9,25 @@ const ActivityForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            const token = localStorage.getItem('token');
+
             // Log the activity
-            await axios.post('http://localhost:5001/activities', { activity, duration });
+            await axios.post(
+                'http://localhost:5001/activities',
+                { activity, duration },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
 
             // Fetch the total duration
-            const response = await axios.get('http://localhost:5001/totalDuration');
+            const response = await axios.get('http://localhost:5001/totalDuration', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             const totalDuration = response.data.totalDuration;
 
             // Determine the message to display

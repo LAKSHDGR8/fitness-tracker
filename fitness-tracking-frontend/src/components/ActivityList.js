@@ -7,7 +7,12 @@ function ActivityList() {
   useEffect(() => {
     const fetchActivities = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/activities');
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:5001/activities', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setActivities(response.data);
       } catch (error) {
         console.error('Error fetching activities', error);
